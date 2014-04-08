@@ -1,20 +1,6 @@
-
-package CreateConfig::CreateJSON;
-use Moose;
-
-use JSON;
-use DateTime;
-use Env;
-use FindBin qw($Bin);
-use Try::Tiny;
-
 =head1 VERSION
 
 Version 0.01
-
-=cut
-
-our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
@@ -69,13 +55,6 @@ Code snippet.
   
   
   
-=cut
-
- has 'headers'       => ( is => 'rw', isa => 'ArrayRef', required => 1); 
- has 'data_types'     => ( is => 'rw', isa => 'ArrayRef', required => 1); 
- has 'config_dir'     => ( is => 'rw', isa => 'Str', required => 1); 
- has 'table_name'     => ( is => 'rw', isa => 'Str', required => 1); 
- 
 =head1 EXPORTS
 
 =over
@@ -95,37 +74,6 @@ Create config.json file for table.
 
 
 
-
-=cut
-
-sub create_config_json{
-  my $self = shift;
-  my @headers = @{$self->headers};
-  my @data_types = @{$self->data_types};
-  my $data;
-  my $table_name = $self->table_name;
-  my $JSONfile = $self->config_dir.$self->table_name.'.json';
-  print "JSONfile [$JSONfile]\n";
-  open my $fh, ">", lc($JSONfile);
-  
-  foreach my $header_count ( 0..$#headers){
-    print "Header [$headers[$header_count]], Data type [$data_types[$header_count]]\n";
-    $data->{'table'} = lc($table_name);
-    $data->{'multiple_rows'} = 1;
-    
-    $data->{'elements'}[$header_count]{'hydstra_mappings'}[0]{'table'} = 'TODO: setup 1..n Hydstra table mappings';
-    $data->{'elements'}[$header_count]{'hydstra_mappings'}[0]{'field'} = 'TODO: setup 1..n Hydstra field mappings';
-
-    $data->{'elements'}[$header_count]{'foreign_field'} = lc($headers[$header_count]);
-    $data->{'elements'}[$header_count]{'foreign_table'} = lc($table_name);
-    $data->{'elements'}[$header_count]{'foreign_key_field'} = '';
-    $data->{'elements'}[$header_count]{'sqlite_type'} = lc($data_types[$header_count]);
-  }
-  print $fh encode_json($data);
-  #close ($fh);
-  return 1;
-}
- 
 
 =head1 AUTHOR
 
@@ -180,6 +128,3 @@ CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-=cut
-
-1; # End of Import
