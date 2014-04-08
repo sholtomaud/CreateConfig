@@ -35,14 +35,14 @@ Code snippet.
        "table": "casing",         #Required 
        "elements": [{             #Required - a list of all column headers found in the db file
         {
-        "sqlite_type": "numeric", #Required - indicates what data type the column is for the SQLite db
-        "dnrm_field": "bottom",   #Required - indicates what data type the column is for the SQLite db
-        "dnrm_key_field": "",
-        "dnrm_table": "casing",
+        "sqlite_type": "numeric",     #Required - indicates what data type the column is for the SQLite db
+        "foreign_field": "bottom",    #Required - indicates what data type the column is for the SQLite db
+        "foreign_key_field": "",      #Required - indicates whether hte foreign field is considered a key in their db
+        "foreign_table": "casing",    #Required - foreign table name (defaults to the name of the db file supplied)
         "hydstra_mappings": [{
             "field": "TODO: setup 1..n Hydstra field mappings",   #Required
             "table": "TODO: setup 1..n Hydstra table mappings",   #Required
-            "value": "TODO: setup some value for special cases",  #Optional
+            "value": "TODO: setup some value for special cases",  #Optional - can set a value where appropriate. E.g. a column name such as pH, might actually be a Hydstra variable so you set the variable value manually here
           },
           {
             "field": "TODO: setup 1..n Hydstra field mappings",   #Required
