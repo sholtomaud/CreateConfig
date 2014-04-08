@@ -10,7 +10,7 @@ use File::Copy;
 use Logger;
 use Try::Tiny;
 use Scalar::Util qw(looks_like_number);
-#use CreateConfig::CreateJSON;
+use CreateConfig::CreateJSON;
 
 =head1 VERSION
 
